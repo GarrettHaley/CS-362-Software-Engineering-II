@@ -643,7 +643,7 @@ int getCost(int cardNumber)
   return -1;
 }
 
-void refactoredAdventurer(struct gameState *state){
+int refactoredAdventurer(struct gameState *state){
  	int currentPlayer = whoseTurn(state);
  	int temphand[MAX_HAND];
  	int drawntreasure=0;
@@ -655,7 +655,7 @@ void refactoredAdventurer(struct gameState *state){
         	}
         	drawCard(currentPlayer, state);
         	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];
-        	if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+        	if (cardDrawn == copper || cardDrawn == silver)
           		drawntreasure++;
         	else{
           		temphand[z]=cardDrawn;
@@ -663,50 +663,57 @@ void refactoredAdventurer(struct gameState *state){
           		z++;
         	}
       }
-       while(z-1>=0){
+	while(z-1>=0){
        		state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1];
         	z=z-1;
-       }
+        }
+	return 0;
+	
 }
 
-void refactoredSmithy(int handPos, struct gameState *state)
+int refactoredSmithy(int handPos, struct gameState *state)
 {
 	int currentPlayer = whoseTurn(state);
 	int i;
-	for (i = 0; i < 3; i++){
+	for (i = 1; i < 3; i++){
         	drawCard(currentPlayer, state);
         }
       	discardCard(handPos, currentPlayer, state, 0);
+	return 0;
 }
 
-void refactoredCouncilRoom(int handPos, struct gameState *state)
+int refactoredCouncilRoom(int handPos, struct gameState *state)
 {
 	int i;
 	int currentPlayer = whoseTurn(state);
 	for (i = 0; i < 4; i++){
         	drawCard(currentPlayer, state);
         }
-	state->numBuys++;
+	state->numBuys--;
 	for (i = 0; i < state->numPlayers; i++){
 		if ( i != currentPlayer ){
 			drawCard(i, state);
             	}
         }
       	discardCard(handPos, currentPlayer, state, 0);
+	return 0;
 }
-void refactoredVillage(int handPos, struct gameState *state)
+int refactoredVillage(int handPos, struct gameState *state)
 {
 	int currentPlayer = whoseTurn(state);
 	drawCard(currentPlayer, state);
+	drawCard(currentPlayer, state);
         state->numActions = state->numActions + 2;
         discardCard(handPos, currentPlayer, state, 0);
+	return 0;
 }
-void refactoredGreatHall(int handPos, struct gameState *state)
+int refactoredGreatHall(int handPos, struct gameState *state)
 {
 	int currentPlayer = whoseTurn(state);
 	drawCard(currentPlayer, state);
 	state->numActions++;
 	discardCard(handPos, currentPlayer, state, 0);
+	return 0;
 }
 int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
 {
@@ -731,13 +738,11 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-         refactoredAdventurer(state);
-	 return 0;
+         return refactoredAdventurer(state);
 			
     case council_room:
-        refactoredCouncilRoom(handPos, state);
-	return 0;
-			
+        return refactoredCouncilRoom(handPos, state);
+
     case feast:
       //gain card with cost up to 5
       //Backup hand
@@ -856,12 +861,10 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case smithy:
-        refactoredSmithy(handPos,state);
-	return 0;
+        return refactoredSmithy(handPos,state);
 		
     case village:
-	refactoredVillage(handPos, state);
-	return 0;
+	return refactoredVillage(handPos, state);
 		
     case baron:
       state->numBuys++;//Increase buys by 1!
@@ -915,8 +918,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case great_hall:
-	refactoredGreatHall(handPos, state);      
-	return 0;
+	return refactoredGreatHall(handPos, state);   
 		
     case minion:
       //+1 action
