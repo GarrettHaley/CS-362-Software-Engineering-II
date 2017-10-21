@@ -18,7 +18,7 @@ int ASSERT(int b, char* s) {
 }
 
 int main(){
-  printf("\nUNIT 3 TEST: Buy function\n");
+  printf("\nUNIT 3 TEST: BuyCard function\n");
   struct gameState state;
   int s;
   int k[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
