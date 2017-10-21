@@ -655,7 +655,7 @@ int refactoredAdventurer(struct gameState *state){
         	}
         	drawCard(currentPlayer, state);
         	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];
-        	if (cardDrawn == copper || cardDrawn == silver)
+        	if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
           		drawntreasure++;
         	else{
           		temphand[z]=cardDrawn;
@@ -675,7 +675,7 @@ int refactoredSmithy(int handPos, struct gameState *state)
 {
 	int currentPlayer = whoseTurn(state);
 	int i;
-	for (i = 1; i < 3; i++){
+	for (i = 0; i < 3; i++){
         	drawCard(currentPlayer, state);
         }
       	discardCard(handPos, currentPlayer, state, 0);
@@ -701,7 +701,6 @@ int refactoredCouncilRoom(int handPos, struct gameState *state)
 int refactoredVillage(int handPos, struct gameState *state)
 {
 	int currentPlayer = whoseTurn(state);
-	drawCard(currentPlayer, state);
 	drawCard(currentPlayer, state);
         state->numActions = state->numActions + 2;
         discardCard(handPos, currentPlayer, state, 0);
