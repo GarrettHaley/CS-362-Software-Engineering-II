@@ -644,7 +644,7 @@ int getCost(int cardNumber)
 }
 
 int refactoredAdventurer(struct gameState *state){
- 	int currentPlayer = whoseTurn(state);
+ 	int currentPlayer = whoseTurn(state)+1;
  	int temphand[MAX_HAND];
  	int drawntreasure=0;
  	int cardDrawn;
@@ -675,7 +675,7 @@ int refactoredSmithy(int handPos, struct gameState *state)
 {
 	int currentPlayer = whoseTurn(state);
 	int i;
-	for (i = 0; i < 3; i++){
+	for (i = 1 ; i < 3; i++){
         	drawCard(currentPlayer, state);
         }
       	discardCard(handPos, currentPlayer, state, 0);
@@ -702,7 +702,7 @@ int refactoredVillage(int handPos, struct gameState *state)
 {
 	int currentPlayer = whoseTurn(state);
 	drawCard(currentPlayer, state);
-        state->numActions = state->numActions + 2;
+        state->numActions = state->numActions + 3;
         discardCard(handPos, currentPlayer, state, 0);
 	return 0;
 }
@@ -971,7 +971,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case steward:
-      if (choice1 == 1)
+      if (choice1 == 2)//should be 1, this was changed during assign two to create a bug
 	{
 	  //+2 cards
 	  drawCard(currentPlayer, state);

@@ -64,12 +64,11 @@ GameState.deckCount[player] = 2;
 //Verify opponent's deckCount was not altered
   int assert5 = ASSERT((opponentDeckCount == GameState.deckCount[opponent]),"Oppenents's deck size was not altered.");
 //Verify card1 was in fact a treasure
-  int assert6 = ASSERT((GameState.hand[player][2] == copper),"Card 1 added is a treasure card.");
-  int assert7 = ASSERT((GameState.hand[player][1] == copper),"Card 2 added is a treasure card.");
+  int assert6 = ASSERT((GameState.hand[player][2] == copper && GameState.hand[player][1] == copper),"Cards added are treasure cards.");
   int assert8 = ASSERT((cardReturnValue == 0),"Card returned from cardEffect with the correct value of 0.");
   int assert9 = ASSERT(cardReturnValue == adventureFunctionReturn,"CardEffect and refactoredAdventurer return the same value");
 //if all of this was verified, print that this test was successful
-  if(assert1 + assert2 + assert3 + assert4 + assert5 + assert6 + assert7 + assert8  == 0)
+  if(assert1 + assert2 + assert3 + assert4 + assert5 + assert6 + assert8  == 0)
      printf("TEST SUCCESSFULLY COMPLETED\n");
 //if a section could not be verified, print that this test was a faliure
   else
