@@ -689,7 +689,7 @@ int refactoredCouncilRoom(int handPos, struct gameState *state)
 	for (i = 0; i < 4; i++){
         	drawCard(currentPlayer, state);
         }
-	state->numBuys--;
+	state->numBuys++;
 	for (i = 0; i < state->numPlayers; i++){
 		if ( i != currentPlayer ){
 			drawCard(i, state);
