@@ -17,8 +17,9 @@ int main (int argc, char** argv) {
 
 		g->deckCount[player] = rand() % MAX_DECK;//randomize deck size
 		g->discardCount[player] = rand() % MAX_DECK;//randomize discard size
-		g->handCount[player] = rand() % MAX_HAND;//randomize hand size
-
+		int oldHand = g->handCount[player] = rand() % MAX_HAND;//randomize hand size
+		int opponentsHand = g->handCount[1] = rand() % MAX_HAND;
+		int opponentsDeck = g->deckCount[1] = rand() % MAX_DECK;
 		int checkStatus = 0,x;//variable to track if cards added were treasure cards or not 
 	
 		for(x = 0 ; x < g->handCount[player]; x++) {
@@ -35,7 +36,7 @@ int main (int argc, char** argv) {
 			}
 		}
 
-		if(checkStatus < 0) 
+		if(checkStatus < 0 && oldHand + 1 == g->handCount[player] && opponentsHand == g->handCount[1] && opponentsDeck == g->deckCount[1]) 
 			testSuccessful++;//if cards were added, and were treasure cards, then this test was successful
 		else 
 			testFailed++;
