@@ -1,0 +1,23 @@
+Bug 1:
+ Description: 2 assertion errors regarding the playing of the Smithy card: the hand size and deck size were not properly altered.
+Steps to reproduce: run the test suite using the following command: make unittestresults.out. Open the newly created unittestresults.out and look for the card test 2: Smithy for the assertion errors.
+Expected result:
+1.  +3 cards to the hand of the player.
+2.  -3 cards from the deck of the player.
+Actual result: 
+1. 3 cards not added to player's hand.
+2. 3 cards not removed from players deck.
+Bug 2:
+ Description: 1 assertion error regarding the playing of the Village card: The player's action are not properly altered.
+Steps to reproduce: run the test suite using the following command: make unittestresults.out. Open the newly created unittestresults.out and look for the card test 3: Village for the assertion error.
+Expected result:
+1.  2 player actions added.
+Actual result: 
+1. 2 player actions not added.
+Bug 3:
+ Description: 50 failures regarding the playing of the Council Room card due to hand count not properly altered.
+Steps to reproduce: run the test suite using the following command: make unittestresults.out. Open the newly created unittestresults.out and look for the random test 2: council room card.
+Expected result:
+1. 50 successful council room plays.
+Actual result: 
+1. 50 council room failures.
