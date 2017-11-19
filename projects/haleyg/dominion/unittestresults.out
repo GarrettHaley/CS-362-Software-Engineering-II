@@ -62,13 +62,13 @@ CardEffect and refactoredAdventurer return the same value
 TEST FAILED
 
 Starting Card Test 2: Smithy
-ASSERTION FAILURE: Smithy +3 cards to the players hand.
+Smithy +3 cards to the players hand.
 Number of actions remained the same.
-ASSERTION FAILURE: Deck size was properly decreased by 3.
+Deck size was properly decreased by 3.
 Oppenents's hand size was not altered.
 Oppenents's deck size was not altered.
 Card returned from cardEffect with the correct value of 0.
-TEST FAILED
+TEST SUCCESSFULLY COMPLETED
 
 Starting Card Test 3: Village
 Village +1 card to players hand.
@@ -111,6 +111,9 @@ There were 50 successful council room card plays, and 0 failures [out of 50 game
 
 Random Test 3: Great Hall Card
 There were 50 successful council room card plays, and 0 failures [out of 50 games]
+
+
+__________________________________END OF TESTS________________________________________
 
 Function 'updateCoins'
 Lines executed:81.82% of 11
@@ -1006,13 +1009,13 @@ branch  1 taken 3
         1:  522:  return 0;
         -:  523:}
         -:  524:
-function drawCard called 869 returned 100% blocks executed 100%
-      869:  525:int drawCard(int player, struct gameState *state)
+function drawCard called 870 returned 100% blocks executed 100%
+      870:  525:int drawCard(int player, struct gameState *state)
         -:  526:{	int count;
         -:  527:  int deckCounter;
-      869:  528:  if (state->deckCount[player] <= 0){//Deck is empty
+      870:  528:  if (state->deckCount[player] <= 0){//Deck is empty
 branch  0 taken 25 (fallthrough)
-branch  1 taken 844
+branch  1 taken 845
         -:  529:    
         -:  530:    //Step 1 Shuffle the discard pile back into a deck
         -:  531:    int i;
@@ -1057,19 +1060,19 @@ branch  1 taken 9
         -:  565:  }
         -:  566:
         -:  567:  else{
-      844:  568:    int count = state->handCount[player];//Get current hand count for player
+      845:  568:    int count = state->handCount[player];//Get current hand count for player
         -:  569:    int deckCounter;
         -:  570:    if (DEBUG){//Debug statements
         -:  571:      printf("Current hand count: %d\n", count);
         -:  572:    }
         -:  573:
-      844:  574:    deckCounter = state->deckCount[player];//Create holder for the deck count
-      844:  575:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
-      844:  576:    state->deckCount[player]--;
-      844:  577:    state->handCount[player]++;//Increment hand count
+      845:  574:    deckCounter = state->deckCount[player];//Create holder for the deck count
+      845:  575:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
+      845:  576:    state->deckCount[player]--;
+      845:  577:    state->handCount[player]++;//Increment hand count
         -:  578:  }
         -:  579:
-      853:  580:  return 0;
+      854:  580:  return 0;
         -:  581:}
         -:  582:
 function getCost called 31 returned 100% blocks executed 97%
@@ -1214,11 +1217,11 @@ function refactoredSmithy called 1 returned 100% blocks executed 100%
         1:  676:	int currentPlayer = whoseTurn(state);
 call    0 returned 1
         -:  677:	int i;
-        3:  678:	for (i = 1 ; i < 3; i++){
-branch  0 taken 2
+        4:  678:	for (i = 0 ; i < 3; i++){
+branch  0 taken 3
 branch  1 taken 1 (fallthrough)
-        2:  679:        	drawCard(currentPlayer, state);
-call    0 returned 2
+        3:  679:        	drawCard(currentPlayer, state);
+call    0 returned 3
         -:  680:        }
         1:  681:      	discardCard(handPos, currentPlayer, state, 0);
 call    0 returned 1

@@ -33,7 +33,7 @@ int main (int argc, char** argv) {
         }
         printf("Random Test 3: Great Hall Card");
         printf("\nThere were %d successful council room card plays, and %d failures [out of %d games]\n\n", testSuccessful, testFailed, tests);
-
+	printf("\n__________________________________END OF TESTS________________________________________\n\n");
         return 0;
 }
 

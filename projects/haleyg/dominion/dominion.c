@@ -675,7 +675,7 @@ int refactoredSmithy(int handPos, struct gameState *state)
 {
 	int currentPlayer = whoseTurn(state);
 	int i;
-	for (i = 1 ; i < 3; i++){
+	for (i = 0 ; i < 3; i++){
         	drawCard(currentPlayer, state);
         }
       	discardCard(handPos, currentPlayer, state, 0);

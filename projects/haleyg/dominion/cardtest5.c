@@ -108,7 +108,7 @@ int main() {
 		ASSERT(-1,"There has been an error when removing the 2 cards from the deck");
 
         if(a1+a2+a3+a4+a5+a6+a7 == 0){
-		printf("TEST WAS SUCCESSFULLY COMPLETED\n__________________________________END OF TESTS________________________________________\n\n");
+		printf("TEST WAS SUCCESSFULLY COMPLETED\n");
         }
 	else{
 		printf("TEST FAILED\n\n");
