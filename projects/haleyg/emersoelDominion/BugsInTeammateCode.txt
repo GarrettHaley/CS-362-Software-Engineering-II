@@ -21,3 +21,6 @@ Expected result:
 1. 50 successful council room plays.
 Actual result: 
 1. 50 council room failures.
+
+
+From my test suite I was able to identify 3 bugs in my teammates dominion program. Bugs 1, 2 and 3 were fairly simple bugs that stemmed from an incorrect card/deck change or incorrect altered player actions after a certain card was played. Bugs 1 and 2 were identified by unit tests while bug 3 was identified from a random test. Due to the nature of bug 3, it still remains easily reproducible by the random test created for the Council Room card.
